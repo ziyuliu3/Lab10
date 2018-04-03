@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.Scanner;
 import javax.swing.JFrame;
 
@@ -127,7 +128,7 @@ public class Sorting {
         String dataFilename = "";
         while (true) {
             System.out.println("Enter the type of data to sort "
-                    + "(1 for sorted, 2 for almost sorted, 3 for reverse sorted): ");
+                    + "(1 for sorted, 2 for almost sorted, 3 for reverse sorted, 4 for random): ");
             int datatype = userInput.nextInt();
             switch (datatype) {
                 case 1 :
@@ -139,8 +140,11 @@ public class Sorting {
                 case 3 :
                     dataFilename = "reverse.txt";
                     break;
+                case 4:
+                    dataFilename = "random.txt";
+                    break;
                 default :
-                    System.out.println("Please enter 1, 2, or 3");
+                    System.out.println("Please enter 1, 2, 3, or 4");
                     break;
             }
             if (!dataFilename.equals("")) {
@@ -172,7 +176,7 @@ public class Sorting {
         int whichAlgorithm;
         while (true) {
             System.out.println("Enter the sorting algorithm that you want to use"
-                    + " (1 for bubble sort, 2 for insertion sort, 3 for merge sort): ");
+                    + " (1 for bubble sort, 2 for insertion sort, 3 for merge sort, 4 for built-in): ");
             whichAlgorithm = userInput.nextInt();
             if (whichAlgorithm > 0 && whichAlgorithm < 4) {
                 break;
@@ -203,8 +207,12 @@ public class Sorting {
                 case 2 :
                     sortedArray = selectionSort(unsortedArray);
                     break;
-                default :
+                case 3 :
                     sortedArray = mergeSort(unsortedArray);
+                    break;
+                default:
+                    sortedArray = unsortedArray;
+                    Arrays.sort(sortedArray);
                     break;
             }
             if (sortedArray == null || !isSorted(sortedArray)) {

@@ -47,7 +47,7 @@ public class GraphPlotter extends JPanel {
         int w = getWidth();
         int h = getHeight();
 
-        // Draw ordinate axis
+        // Draw coordinate axis
         g2.draw(new Line2D.Double(DEFAULT_PADDING, DEFAULT_PADDING, DEFAULT_PADDING,
                 h - DEFAULT_PADDING));
         // Draw abcissa axis
@@ -60,7 +60,7 @@ public class GraphPlotter extends JPanel {
         LineMetrics lm = font.getLineMetrics("0", frc);
         float sh = lm.getAscent() + lm.getDescent();
 
-        // Draw the Ordinate label
+        // Draw the coordinate label
         String s = "Time Taken";
         float sy = DEFAULT_PADDING + ((h - 2 * DEFAULT_PADDING) - s.length() * sh) / 2
                 + lm.getAscent();
