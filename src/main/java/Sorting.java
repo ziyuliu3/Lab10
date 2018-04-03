@@ -92,6 +92,21 @@ public class Sorting {
     }
 
     /**
+     * Helper function to check if an array is actually sorted.
+     *
+     * @param array the array to check
+     * @return true if the array is sorted, false otherwise
+     */
+    private static boolean isSorted(final int[] array) {
+        for (int i = 0; i < array.length - 1; i++) {
+            if (array[i] > array[i + 1]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * Main method for testing.
      * <p>
      * This method reads numbers from input file of type specified by user, runs different sorting
@@ -172,6 +187,8 @@ public class Sorting {
              * because we only want a certain number of values.
              */
             int[] unsortedArray = new int[i * SORT_INCREMENT];
+            System.out.println("Sorting " + (i * SORT_INCREMENT) + " integers");
+
             System.arraycopy(allnumbers, 0, unsortedArray, 0, i * SORT_INCREMENT);
 
             /*
@@ -190,7 +207,7 @@ public class Sorting {
                     sortedArray = mergeSort(unsortedArray);
                     break;
             }
-            if (sortedArray == null) {
+            if (sortedArray == null || !isSorted(sortedArray)) {
                 succeeded = false;
                 break;
             }
