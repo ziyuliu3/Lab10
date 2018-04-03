@@ -10,9 +10,9 @@ import java.awt.geom.Line2D;
 import javax.swing.JPanel;
 
 /**
- * Simple plotting class for Lab 11.
+ * Simple plotting class for Lab 10.
  *
- * @see <a href="https://cs125.cs.illinois.edu/lab/11/">Lab 11 Description</a>
+ * @see <a href="https://cs125.cs.illinois.edu/lab/10/">Lab 10 Description</a>
  */
 public class GraphPlotter extends JPanel {
 

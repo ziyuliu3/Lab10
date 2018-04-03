@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 /**
  * Class implementing sorting algorithms.
  *
- * @see <a href="https://cs125.cs.illinois.edu/lab/11/">Lab 11 Description</a>
+ * @see <a href="https://cs125.cs.illinois.edu/lab/10/">Lab 10 Description</a>
  */
 
 public class Sorting {
