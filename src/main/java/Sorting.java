@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Scanner;
 import javax.swing.JFrame;
 
@@ -28,7 +29,8 @@ public class Sorting {
      * @param array unsorted input array
      * @return the sorted array, or null on failure
      */
-    static int[] bubbleSort(final int[] array) {
+    @SuppressWarnings("unused")
+    private static int[] bubbleSort(final int[] array) {
         return null;
     }
 
@@ -38,7 +40,8 @@ public class Sorting {
      * @param array unsorted input array
      * @return the sorted array, or null on failure
      */
-    static int[] selectionSort(final int[] array) {
+    @SuppressWarnings("unused")
+    private static int[] selectionSort(final int[] array) {
         return null;
     }
 
@@ -48,7 +51,8 @@ public class Sorting {
      * @param array array that needs to be sorted
      * @return the sorted array, or null on failure
      */
-    static int[] mergeSort(final int[] array) {
+    @SuppressWarnings("unused")
+    private static int[] mergeSort(final int[] array) {
         return null;
     }
 
@@ -56,30 +60,35 @@ public class Sorting {
      * Merge helper function that merges two sorted arrays into a single sorted array.
      * <p>
      * Implement an in place merge algorithm that repeatedly picks the smaller of two numbers from
-     * "right" and "left" subarray and copies it to the "arr" array to produce a bigger sorted array
+     * passed arrays and copies it to the returned array to produce a bigger sorted array
      *
-     * @param arr array contains sorted subarrays, should contain the resulting merged sorted array
-     * @param l start position of sorted left subarray
-     * @param m ending position of sorted left and start position of sorted right subarray
-     * @param r ending position of sorted right subarray
+     * @param first the first array to merge
+     * @param second the second array to merge
      * @return the sorted array, or null on failure
      */
-    static int[] merge(final int[] arr, final int l, final int m, final int r) {
-        int n1 = m - l + 1;
-        int n2 = r - m;
-
-        int[] left = new int[n1];
-        int[] right = new int[n2];
-
-        for (int i = 0; i < n1; ++i) {
-            left[i] = arr[l + i];
+    @SuppressWarnings("unused")
+    private static int[] merge(final int[] first, final int[] second) {
+        int total = first.length + second.length;
+        int firstIndex = 0, secondIndex = 0;
+        int[] returnArray = new int[total];
+        for (int i = 0; i < total; i++) {
+            if (firstIndex < first.length && secondIndex < second.length) {
+                if (first[firstIndex] < second[secondIndex]) {
+                    returnArray[i] = first[firstIndex];
+                    firstIndex++;
+                } else {
+                    returnArray[i] = second[secondIndex];
+                    secondIndex++;
+                }
+            } else if (firstIndex < first.length) {
+                returnArray[i] = first[firstIndex];
+                firstIndex++;
+            } else if (secondIndex < second.length) {
+                returnArray[i] = second[secondIndex];
+                secondIndex++;
+            }
         }
-        for (int j = 0; j < n2; ++j) {
-            right[j] = arr[m + 1 + j];
-        }
-
-        /* TO DO: Merge left and right array here */
-        return arr;
+        return returnArray;
     }
 
     /**
@@ -127,8 +136,12 @@ public class Sorting {
         /*
          * Load the input file.
          */
-        String numbersFilePath = //
-                Sorting.class.getClassLoader().getResource(dataFilename).getFile();
+        URL fileURL = Sorting.class.getClassLoader().getResource(dataFilename);
+        if (fileURL == null) {
+            System.out.println("Opening file failed");
+            return;
+        }
+        String numbersFilePath = fileURL.getFile();
         numbersFilePath = new URI(numbersFilePath).getPath();
         File numbersFile = new File(numbersFilePath);
         Scanner numbersScanner = new Scanner(numbersFile, "UTF-8");
@@ -159,9 +172,7 @@ public class Sorting {
              * because we only want a certain number of values.
              */
             int[] unsortedArray = new int[i * SORT_INCREMENT];
-            for (int j = 0; j < (i * SORT_INCREMENT); j++) {
-                unsortedArray[j] = allnumbers[j];
-            }
+            System.arraycopy(allnumbers, 0, unsortedArray, 0, i * SORT_INCREMENT);
 
             /*
              * Sort the array using the algorithm requested. Measure and record the time taken.
